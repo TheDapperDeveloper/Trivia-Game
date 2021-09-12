@@ -32,16 +32,17 @@ async function generateQuestion () {
     newLi.innerText = ansData
     answer.appendChild(newLi)
 
+    const getAnswer = document.querySelector(".answer")
+
+    document.querySelector(".answer").onclick = function () {
+        const ansData = jsonQuestion.results[3].correct_answer;
+        const answer = document.getElementById("option-container");
+        const newLi = document.createElement("h3")
+        newLi.innerText = ansData
+        answer.appendChild(newLi)
+    }
+
 }
-    
-    // mainContainer.append(choiceContainer)
-    // choiceContainer.append(answers)
-    // choiceContainer.append(jsonQuestion.results[3].incorrect_answers)
-    // choiceContainer.append(jsonQuestion.results[3].correct_answer)
-    
-
-
-
 
 generate.addEventListener("click", () => generateQuestion())
 
