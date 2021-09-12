@@ -32,8 +32,6 @@ async function generateQuestion () {
     newLi.innerText = ansData
     answer.appendChild(newLi)
 
-    const getAnswer = document.querySelector(".answer")
-
     document.querySelector(".answer").onclick = function () {
         const ansData = jsonQuestion.results[3].correct_answer;
         const answer = document.getElementById("option-container");
@@ -41,6 +39,7 @@ async function generateQuestion () {
         newLi.innerText = ansData
         answer.appendChild(newLi)
     }
+    
 
 }
 
