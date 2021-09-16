@@ -1,6 +1,8 @@
 const generate = document.querySelector(".generate")
 const viewAnswer = document.querySelector(".answer")
 viewAnswer.innerHTML= "Get answer"
+const sessionToken= "https://opentdb.com/api_token.php?command=request";
+
 const searchURL = "https://opentdb.com/api.php?amount=50&category=11&difficulty=medium&type=multiple"
 
 async function generateQuestion () {
@@ -11,8 +13,19 @@ async function generateQuestion () {
     choiceContainer.class = "choices"
     const answerContainer = document.createElement("div")
     answerContainer.class = "answer"
-    const generateQuestion = await fetch(`${searchURL}`)
+
+    const sToken = await fetch (`${sessionToken}`)
+    const jsonToken = await sToken.json();
+    const finalToken = jsonToken.token
+    console.log(finalToken)
+    const generateQuestion = await fetch(`${searchURL}` + `${finalToken}`)
+    console.log(generateQuestion)
     const jsonQuestion = await generateQuestion.json();
+    console.log(jsonQuestion)
+    const result = jsonQuestion.results[3].question
+    result.replace("&quot;", "\"")
+    result.replace("&#039", "\"")
+    console.log(result)
 
     mainContainer.append(secContainer)
     secContainer.append(jsonQuestion.results[3].question)
