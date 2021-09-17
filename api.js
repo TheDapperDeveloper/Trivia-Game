@@ -3,7 +3,7 @@ const viewAnswer = document.querySelector(".answer")
 viewAnswer.innerHTML= "Get answer"
 const sessionToken= "https://opentdb.com/api_token.php?command=request";
 
-const searchURL = "https://opentdb.com/api.php?amount=50&category=11&difficulty=medium&type=multiple"
+const searchURL = "https://opentdb.com/api.php?amount=50"
 
 async function generateQuestion () {
     const mainContainer = document.querySelector(".main-container")
@@ -18,7 +18,7 @@ async function generateQuestion () {
     const jsonToken = await sToken.json();
     const finalToken = jsonToken.token
     console.log(finalToken)
-    const generateQuestion = await fetch(`${searchURL}` + `${finalToken}`)
+    const generateQuestion = await fetch(`${searchURL}` + "&token=" + `${finalToken}` + "&category=11&difficulty=medium&type=multiple")
     console.log(generateQuestion)
     const jsonQuestion = await generateQuestion.json();
     console.log(jsonQuestion)
